@@ -6,13 +6,23 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col class="text-center">
-        <slideItem />    
+      <v-col>
+        <h2>Best sellers</h2>
       </v-col>
     </v-row>
     <v-row>
       <v-col class="text-center">
-        <slideItem />    
+        <slideItem />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <h2>Recommend</h2>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col class="text-center">
+        <slideItem />
       </v-col>
     </v-row>
   </div>
@@ -21,7 +31,7 @@
 import carousel from "../components/carousel.vue";
 import slideItem from "../components/slideItem.vue";
 export default {
-  components: { carousel,slideItem },
+  components: { carousel, slideItem },
   layout: "main",
 };
 </script>

@@ -30,7 +30,7 @@ export default {
     async userLogin() {
       try {
         let response = await this.$auth.loginWith('local', { data: this.login })
-        console.log(this.$auth)
+        // console.log(this.$auth)
         // this.$auth.setUserToken('','')
         // this.$auth.logout('local')
         // console.log(this.$auth)

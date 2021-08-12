@@ -3,6 +3,7 @@
     <v-slide-group show-arrows class="d-flex justify-space-between mb-6">
       <v-slide-item v-for="(data, index) in bookList" :key="index">
         <bookCard
+          :id="data.id"
           :image="data.imagePath"
           :ratingScore="data.averageReviewScore"
           :ratingCount="data.reviewCount"
@@ -20,6 +21,7 @@ export default {
   data() {
     return {
       bookList: {
+        id: "",
         image: "",
         ratingScore: "",
         ratingCount: "",
@@ -31,6 +33,7 @@ export default {
   async fetch() {
     const resonse = await this.$axios.get(`/api/books`);
     this.bookList = resonse.data["hydra:member"];
+    console.log(this.bookList);
   },
 };
 </script>
