@@ -1,10 +1,16 @@
 <template>
-  <v-row justify="space-around">
-    <v-spacer></v-spacer>
-    <searchComponent />
-    <cartComponent />
-    <userAvatarComponent />
-  </v-row>
+  <v-container fill-height>
+    <v-row justify="space-around" class="mx-3">
+      <v-toolbar-title @click="onClickHome()" class="my-auto mx-3">Book</v-toolbar-title>
+      <span class="my-auto mx-3" @click="onClickHome()">
+        <h4>Home</h4>
+      </span>
+      <v-spacer></v-spacer>
+      <searchComponent />
+      <cartComponent />
+      <userAvatarComponent />
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -17,5 +23,10 @@ export default {
     searchComponent,
     userAvatarComponent,
   },
+  methods:{
+    onClickHome(){
+      this.$router.push('/')
+    }
+  }
 };
 </script>

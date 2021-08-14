@@ -1,6 +1,6 @@
 <template>
-  <v-badge :content="messages" :value="messages" color="green" overlap>
-    <v-icon large> mdi-vuetify </v-icon>
+  <v-badge class="my-auto mx-2" :content="messages" :value="messages" color="green" overlap>
+    <v-icon large> mdi-cart-outline </v-icon>
   </v-badge>
 </template>
 <script>

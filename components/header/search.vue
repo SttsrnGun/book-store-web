@@ -22,23 +22,18 @@
           </v-list-item-title>
         </v-list-item>
       </template>
-      <!-- <template v-slot:selection="{ attr, on, item, selected }">
-        <v-chip
-          v-bind="attr"
-          :input-value="selected"
-          color="blue-grey"
-          class="white--text"
-          v-on="on"
-        >
-          <span v-text="item.name"></span>
-        </v-chip>
-      </template> -->
       <template v-slot:item="{ item }">
-
+        <v-list-item-avatar
+          color="indigo"
+          class="text-h5 font-weight-light white--text"
+        >
+          <v-img
+        :src="item.imagePath"
+        alt="John"
+      ></v-img>
+        </v-list-item-avatar>
         <v-list-item-content @click="onClickApprove(item.id)">
-          <!-- <router-link :to="'/book/'+item.id"> -->
           <v-list-item-title v-text="item.name"></v-list-item-title>
-          <!-- </router-link> -->
         </v-list-item-content>
         
       </template>
