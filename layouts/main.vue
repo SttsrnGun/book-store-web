@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-app-bar app flat height="45">
+      <header-layout />
       <!-- <v-container class="py-0 fill-height">
         <v-avatar class="mr-10" color="grey darken-1" size="32"></v-avatar>
 
@@ -22,7 +23,7 @@
       </v-container> -->
     </v-app-bar>
     <v-main>
-      <v-container >
+      <v-container>
         <nuxt />
       </v-container>
     </v-main>
@@ -31,9 +32,12 @@
 
 <script>
 import carousel from "@/components/carousel";
+import headerLayout from "@/layouts/header.vue";
 export default {
+  layout: "main",
   components: {
     carousel,
+    headerLayout,
   },
 };
 </script>

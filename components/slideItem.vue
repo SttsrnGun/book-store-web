@@ -31,9 +31,15 @@ export default {
     };
   },
   async fetch() {
-    const resonse = await this.$axios.get(`/api/books`);
+    const payload = {
+          params: {
+            // "properties[]": "name",
+          },
+        };
+
+    const resonse = await this.$axios.get(`/api/books`, payload);
     this.bookList = resonse.data["hydra:member"];
-    console.log(this.bookList);
+    // console.log(this.bookList);
   },
 };
 </script>
