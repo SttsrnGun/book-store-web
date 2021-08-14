@@ -18,8 +18,14 @@
 import bookCard from "../components/bookCard.vue";
 export default {
   components: { bookCard },
+  props: {
+    bookTag: {
+      type: String,
+    },
+  },
   data() {
     return {
+      // bookTag:this.bookTag,
       bookList: {
         id: "",
         image: "",
@@ -33,13 +39,12 @@ export default {
   async fetch() {
     const payload = {
           params: {
-            // "properties[]": "name",
+            "tag": this.bookTag,
           },
         };
 
     const resonse = await this.$axios.get(`/api/books`, payload);
     this.bookList = resonse.data["hydra:member"];
-    // console.log(this.bookList);
   },
 };
 </script>
