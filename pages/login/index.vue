@@ -34,7 +34,7 @@ export default {
         // this.$auth.setUserToken('','')
         // this.$auth.logout('local')
         // console.log(this.$auth)
-        this.$router.push('/main')
+        this.$router.push('/')
       } catch (err) {
         console.log(err)
       }

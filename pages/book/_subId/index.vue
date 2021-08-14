@@ -24,7 +24,12 @@
       </v-row>
       <v-row align="center" justify="space-around">
         <v-col>
-          <v-text-field type="number" value="1"></v-text-field>
+          <v-text-field
+            type="number"
+            min="1"
+            max="100"
+            value="1"
+          ></v-text-field>
         </v-col>
         <v-col>
           <center>
