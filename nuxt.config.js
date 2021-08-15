@@ -55,23 +55,23 @@ export default {
       local: {
         token: {
           property: 'token',
-          global: true,
+          // global: true,
           // required: true,
           // type: 'Bearer'
         },
         user: {
           property: 'email',
-          // autoFetch: true
+          // autoFetch: true,
         },
         endpoints: {
           login: { 
             url: '/api/authentication_token', 
             method: 'post' 
           },
-          logout: { 
-            url: '/api/users/me', 
-            method: 'get' 
-          },
+          // logout: { 
+          //   url: '/api/users/me', 
+          //   method: 'get' 
+          // },
           user: { 
             url: '/api/users/me', 
             method: 'get' 

@@ -1,44 +1,70 @@
 <template>
-  <div>
-    <form @submit.prevent="userLogin">
+  <v-container class="d-flex justify-space-around">
+    <v-form @submit.prevent="userLogin">
       <div>
-        <label>Email</label>
-        <input type="text" v-model="login.email" />
+        <v-text-field
+          v-model="login.email"
+          label="Email"
+          required
+        ></v-text-field>
       </div>
       <div>
-        <label>Password</label>
-        <input type="password" v-model="login.password" />
+        <v-text-field
+          v-model="login.password"
+          label="Password"
+          type="password"
+          required
+        ></v-text-field>
       </div>
-      <div>
-        <button type="submit">Submit</button>
+      <div class="d-flex justify-space-around">
+        <v-btn
+          color="success"
+          class="mr-4"
+          type="submit"
+        >
+          Login
+        </v-btn>
+        <v-btn
+          color="primary"
+          class="mr-4"
+          @click="onClickRegister()"
+        >
+          Register
+        </v-btn>
       </div>
-    </form>
-  </div>
+    </v-form>
+  </v-container>
 </template>
 
 <script>
 export default {
+  layout: "default",
   data() {
     return {
       login: {
-        email: '',
-        password: ''
-      }
-    }
+        email: "",
+        password: "",
+      },
+    };
   },
   methods: {
     async userLogin() {
       try {
-        let response = await this.$auth.loginWith('local', { data: this.login })
+        let response = await this.$auth.loginWith("local", {
+          data: this.login,
+        });
         // console.log(this.$auth)
         // this.$auth.setUserToken('','')
         // this.$auth.logout('local')
         // console.log(this.$auth)
-        this.$router.push('/')
+        this.$router.push("/");
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
-  }
-}
+    },
+    onClickRegister(){
+      this.$router.push('/register');
+    },
+  },
+};
 </script>
