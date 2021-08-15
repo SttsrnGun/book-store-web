@@ -9,13 +9,14 @@
           :ratingCount="data.reviewCount"
           :name="data.name"
           :price="data.price"
+          :discount="data.discount"
         />
       </v-slide-item>
     </v-slide-group>
   </v-sheet>
 </template>
 <script>
-import bookCard from "../components/bookCard.vue";
+import bookCard from "~/components/bookCard.vue";
 export default {
   components: { bookCard },
   props: {
@@ -40,6 +41,7 @@ export default {
     const payload = {
           params: {
             "tag": this.bookTag,
+            "isHidden":0,
           },
         };
 
