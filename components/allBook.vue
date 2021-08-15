@@ -13,7 +13,8 @@
             <v-col
               v-for="(data, index) in bookList"
               :key="index"
-              cols="3"
+              cols="6"
+              sm="4"
               md="3"
             >
               <v-item>
@@ -24,6 +25,7 @@
                   :ratingCount="data.reviewCount"
                   :name="data.name"
                   :price="data.price"
+                  :discount="data.discount"
                 />
               </v-item>
             </v-col>
@@ -34,7 +36,7 @@
   </v-responsive>
 </template>
 <script>
-import bookCard from "../components/bookCard.vue";
+import bookCard from "~/components/bookCard.vue";
 export default {
   components: { bookCard },
   data() {
@@ -47,16 +49,25 @@ export default {
         ratingCount: "",
         name: "",
         price: "",
+        discount: "",
       },
     };
   },
   async fetch() {
-    const payload = {
+    var payload = {
       params: {
-        // "tag": this.bookTag,
+        "isHidden":0,
       },
     };
-
+    // console.log(this.ownerId);
+    if (this.ownerId) {
+      payload = {
+        params: {
+          "owner[]": this.ownerId,
+        },
+      };
+    }
+    // console.log(payload);
     const resonse = await this.$axios.get(`/api/books`, payload);
     this.bookList = resonse.data["hydra:member"];
     // console.log(this.bookList);

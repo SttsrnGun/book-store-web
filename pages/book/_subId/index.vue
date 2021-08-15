@@ -5,7 +5,7 @@
         <v-img
           contain
           max-height="350"
-          lazy-src="../../loading-book.jpg"
+          :lazy-src="require('~/static/loading-book.jpg')"
           :src="bookObj.imagePath"
         ></v-img>
       </v-col>
@@ -22,7 +22,13 @@
             {{ bookObj.about }}
           </v-col>
         </v-row>
-        <v-row>
+        <v-row v-if="bookObj.discount">
+          <v-col>
+            ราคา
+            {{ bookObj.price-bookObj.discount }}
+          </v-col>
+        </v-row>
+        <v-row v-else>
           <v-col>
             ราคา
             {{ bookObj.price }}
@@ -32,14 +38,17 @@
           <v-col>
             <v-text-field
               type="number"
-              min="1"
+              min="0"
               max="100"
-              value="1"
+              :value="amount"
+              v-model="amount"
             ></v-text-field>
           </v-col>
           <v-col>
             <center>
-              <v-btn depressed color="primary"> Add </v-btn>
+              <v-btn depressed color="primary" @click="onClickAdd(bookObj.id)">
+                Add
+              </v-btn>
             </center>
           </v-col>
           <v-col>
@@ -73,9 +82,7 @@
     </v-row>
     <v-row>
       <v-col class="text-center">
-        <slideItem 
-          bookTag="recomended"
-        />
+        <slideItem bookTag="recomended" />
       </v-col>
     </v-row>
   </v-container>
@@ -85,11 +92,10 @@ import slideItem from "/components/slideItem.vue";
 export default {
   components: { slideItem },
   layout: "main",
-  // methods: {
   data() {
-    // console.log("data");
     return {
       tab: null,
+      amount: 1,
       bookObj: {
         about: "",
         averageReviewScore: "",
@@ -98,28 +104,41 @@ export default {
         imagePath: "",
         name: "",
         price: "",
+        discount: "",
         reviewBooks: "",
         reviewCount: "",
       },
     };
   },
-  //     getPosts() {
-  //       butter.post
-  //         .list({
-  //           page: 1,
-  //           page_size: 10,
-  //         })
-  //         .then((res) => {
-  //           this.posts = res.data.data;
-  //         });
-  //     },
-  // },
+
   async created() {
-    const resonse = await this.$axios.get(
+    let resonse = await this.$axios.get(
       `/api/books/` + this.$route.params.subId
     );
-    // console.log(resonse.data);
     this.bookObj = resonse.data;
+
+    const payload = {
+      params: {
+        bookId: this.$route.params.subId,
+      },
+    };
+
+    resonse = await this.$axios.get(`/api/carts/me`, payload);
+    if(resonse.data[0]){
+      this.amount = resonse.data[0].amount;
+    }
+  },
+  methods: {
+    onClickAdd(id) {
+      this.isLoading = true;
+      const payload = {
+        bookId: id,
+        amount: this.amount,
+      };
+      let resonse = this.$axios.post(`/api/cart/add`, payload);
+      this.isLoading = false;
+      this.$router.push("/book/" + id);
+    },
   },
 };
 </script>

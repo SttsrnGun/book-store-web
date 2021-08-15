@@ -15,7 +15,13 @@
         ></v-progress-linear>
       </template>
       <center>
-        <v-img lazy-src="loading-book.jpg" contain max-width="150" max-height="200" :src="image"></v-img>
+        <v-img
+          :lazy-src="require('~/static/loading-book.jpg')"
+          contain
+          max-width="150"
+          max-height="200"
+          :src="image"
+        ></v-img>
       </center>
       <v-card-text v-if="ratingScore">
         <v-row class="mx-0">
@@ -34,13 +40,20 @@
       </v-card-text>
       <v-card-title>{{ name }}</v-card-title>
       <v-card-text align="left">
-        <div class="my-4 text-subtitle-1" v-if="price">฿ {{ price }}</div>
+        <div class="my-4 text-subtitle-1" v-if="discount">
+          <span class="text-decoration-line-through">
+            ฿ {{ price }}
+          </span>
+          <span> {{ price - discount }}</span>
+        </div>
+        <div class="my-4 text-subtitle-1" v-else>
+          <span> ฿ {{ price }} </span>
+        </div>
       </v-card-text>
     </v-card>
   </v-hover>
 </template>
 <script>
-
 export default {
   props: {
     id: {
@@ -59,6 +72,9 @@ export default {
       type: String,
     },
     price: {
+      type: Number,
+    },
+    discount: {
       type: Number,
     },
   },
