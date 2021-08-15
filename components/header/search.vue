@@ -1,5 +1,5 @@
 <template>
-  <v-responsive class="my-3" max-width="300">
+  <div class="my-3" max-width="300">
     <v-autocomplete
       v-model="model"
       :items="items"
@@ -38,7 +38,7 @@
         
       </template>
     </v-autocomplete>
-  </v-responsive>
+  </div>
 </template>
 <script>
 export default {

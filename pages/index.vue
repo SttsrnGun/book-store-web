@@ -36,9 +36,9 @@
   </div>
 </template>
 <script>
-import carousel from "../components/carousel.vue";
-import slideItem from "../components/slideItem.vue";
-import allBook from "../components/allBook.vue";
+import carousel from "~/components/carousel.vue";
+import slideItem from "~/components/slideItem.vue";
+import allBook from "~/components/allBook.vue";
 export default {
   components: { carousel, slideItem, allBook },
   layout: "main",
