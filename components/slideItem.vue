@@ -42,6 +42,7 @@ export default {
           params: {
             "tag": this.bookTag,
             "isHidden":0,
+            "deletedAt":null
           },
         };
 

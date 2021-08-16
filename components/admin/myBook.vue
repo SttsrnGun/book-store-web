@@ -67,6 +67,7 @@ export default {
         params: {
           "owner[]": this.ownerId,
           "isHidden":0,
+          "deletedAt":null
         },
       };
     }

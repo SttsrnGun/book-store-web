@@ -33,9 +33,9 @@
 
                   
                 </td>
-                <td>{{ item.book.price-item.book.discount }}</td>
+                <td>{{ (item.book.price - item.book.discount).toFixed(2) }}</td>
                 <td>{{ item.amount }}</td>
-                <td>{{ item.amount * (item.book.price-item.book.discount) }}</td>
+                <td>{{ (item.amount * (item.book.price-item.book.discount)).toFixed(2) }}</td>
               </tr>
             </tbody>
           </template>
@@ -59,13 +59,13 @@
         </v-row>
         <v-row>
           <v-col> ยอดสุทธิ </v-col>
-          <v-col class="d-flex flex-row-reverse"> {{ netPrice }} </v-col>
+          <v-col class="d-flex flex-row-reverse text-decoration-underline"> {{ netPrice }} </v-col>
         </v-row>
         <v-row>
           <v-col class="d-flex justify-center">
             <v-tooltip top>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                <v-btn color="primary" dark v-bind="attrs" v-on="on" @click="onClickClearCart()">
                   Checkout
                 </v-btn>
               </template>
@@ -101,9 +101,9 @@ export default {
       }
 
       response = await this.$axios.get(`/api/carts/summary`); // load cart
-      this.sumPrice = response.data.sumPrice;
-      this.deliver = response.data.deliver;
-      this.netPrice = response.data.netPrice;
+      this.sumPrice = response.data.sumPrice.toFixed(2);
+      this.deliver = response.data.deliver.toFixed(2);
+      this.netPrice = response.data.netPrice.toFixed(2);
       
       this.isLoading = false;
     },

@@ -20,9 +20,19 @@ export default {
     carousel,
     headerLayout,
   },
+  watch: {
+    // call again the method if the route changes
+    $route: "fetchData",
+  },
   async created() {
     let userMe = this.$auth.fetchUser();
-    this.$auth.$storage.setState('userMe', userMe);
+    this.$auth.$storage.setState("userMe", userMe);
+  },
+  methods: {
+    async fetchData() {
+      let userMe = this.$auth.fetchUser();
+      this.$auth.$storage.setState("userMe", userMe);
+    },
   },
 };
 </script>

@@ -17,30 +17,25 @@
         ></v-text-field>
       </div>
       <div class="d-flex justify-space-around">
-        <v-btn
-          color="success"
-          class="mr-4"
-          type="submit"
-        >
-          Login
-        </v-btn>
-        <v-btn
-          color="primary"
-          class="mr-4"
-          @click="onClickRegister()"
-        >
+        <v-btn color="success" class="mr-4" type="submit"> Login </v-btn>
+        <v-btn color="primary" class="mr-4" @click="onClickRegister()">
           Register
         </v-btn>
       </div>
     </v-form>
+    <snackbar :snackbar="isSnackbar" :text="String(snackbarText)" />
   </v-container>
 </template>
 
 <script>
+import snackbar from "../../components/snackbar.vue";
 export default {
+  components: { snackbar },
   layout: "default",
   data() {
     return {
+      isSnackbar: false,
+      snackbarText: '',
       login: {
         email: "",
         password: "",
@@ -50,20 +45,17 @@ export default {
   methods: {
     async userLogin() {
       try {
+        this.isSnackbar = false;
         let response = await this.$auth.loginWith("local", {
           data: this.login,
         });
-        // console.log(this.$auth)
-        // this.$auth.setUserToken('','')
-        // this.$auth.logout('local')
-        // console.log(this.$auth)
-        this.$router.push("/");
       } catch (err) {
-        console.log(err);
+        this.isSnackbar = true;
+        this.snackbarText = err;
       }
     },
-    onClickRegister(){
-      this.$router.push('/register');
+    onClickRegister() {
+      this.$router.push("/register");
     },
   },
 };

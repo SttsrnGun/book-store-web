@@ -38,9 +38,10 @@ export default {
   },
   methods: {
     onClickLogout() {
-      // this.$auth.setUserToken('','');
-      this.$auth.logout("local");
-      this.$router.push("/");
+      this.$store.dispatch("logout");
+      // // this.$auth.setUserToken('','');
+      // this.$auth.logout("local");
+      // this.$router.push("/");
     },
     onClickAdmin() {
       this.$router.push("/admin");

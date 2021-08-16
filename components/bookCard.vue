@@ -44,10 +44,10 @@
           <span class="text-decoration-line-through">
             ฿ {{ price }}
           </span>
-          <span> {{ price - discount }}</span>
+          <span> {{ (price - discount).toFixed(2) }}</span>
         </div>
         <div class="my-4 text-subtitle-1" v-else>
-          <span> ฿ {{ price }} </span>
+          <span > ฿ {{ price }} </span>
         </div>
       </v-card-text>
     </v-card>

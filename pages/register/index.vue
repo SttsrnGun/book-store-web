@@ -20,12 +20,17 @@
       <v-btn color="primary" class="mr-4" type="submit"> Register </v-btn>
       <v-btn color="success" class="mr-4" @click="onClickBack()"> Back </v-btn>
     </div>
+    <snackbar :snackbar="isSnackbar" :text="String(snackbarText)" />
   </form>
 </template>
 <script>
+import snackbar from "../../components/snackbar.vue";
 export default {
+  components: { snackbar },
   auth: false,
   data: () => ({
+    isSnackbar: false,
+    snackbarText: "",
     register: {
       email: "",
       password: "",
@@ -39,19 +44,28 @@ export default {
   }),
 
   methods: {
-    submit(values) {
-      this.isLoading = true;
-      const payload = {
-        email: this.register.email,
-        password: this.register.password,
-      };
-      let resonse = this.$axios.post(`/api/users/register`, payload);
-      this.isLoading = false;
+    async submit(values) {
+      try {
+        this.isSnackbar = false;
+        this.isLoading = true;
+        const payload = {
+          email: this.register.email,
+          password: this.register.password,
+        };
+        let resonse = await this.$axios.post(`/api/users/register`, payload);
+        this.isLoading = false;
+
+        this.isSnackbar = true;
+        this.snackbarText = 'Success';
+        this.onClickBack();
+      } catch (err) {
+        this.isSnackbar = true;
+        this.snackbarText = err;
+      }
     },
-    onClickBack(){
-      this.$router.push('/login');
+    async onClickBack() {
+      await this.$router.push("/login");
     },
-    
   },
 };
 </script>

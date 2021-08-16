@@ -57,6 +57,7 @@ export default {
     var payload = {
       params: {
         "isHidden":0,
+        "deletedAt":null
       },
     };
     // console.log(this.ownerId);

@@ -25,7 +25,7 @@
         <v-row v-if="bookObj.discount">
           <v-col>
             ราคา
-            {{ bookObj.price-bookObj.discount }}
+            {{ (bookObj.price - bookObj.discount).toFixed(2) }}
           </v-col>
         </v-row>
         <v-row v-else>
@@ -67,8 +67,8 @@
     </v-row>
     <v-row>
       <v-tabs v-model="tab" grow background-color="transparent">
-        <v-tab> detail </v-tab>
-        <v-tab> about </v-tab>
+        <v-tab> Detail </v-tab>
+        <v-tab> Author </v-tab>
       </v-tabs>
       <v-tabs-items v-model="tab">
         <v-tab-item> {{ bookObj.detail }} </v-tab-item>
@@ -129,15 +129,15 @@ export default {
     }
   },
   methods: {
-    onClickAdd(id) {
+    async onClickAdd(id) {
       this.isLoading = true;
       const payload = {
         bookId: id,
         amount: this.amount,
       };
-      let resonse = this.$axios.post(`/api/cart/add`, payload);
+      let resonse = await this.$axios.post(`/api/cart/add`, payload);
       this.isLoading = false;
-      this.$router.push("/book/" + id);
+      await this.$router.push("/summary");
     },
   },
 };
