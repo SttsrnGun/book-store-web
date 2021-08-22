@@ -93,5 +93,22 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    babel: {
+      plugins:[[
+        '@babel/plugin-proposal-private-property-in-object', {loose: true }
+      ]],
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            targets: {
+              esmodules: true
+            },
+            "loose": true,
+            "shippedProposals": true
+          }
+        ]
+      ]
+    },
   }
 }
