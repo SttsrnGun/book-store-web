@@ -69,11 +69,11 @@ export default {
             method: 'post' 
           },
           // logout: { 
-          //   url: '/api/users/me', 
+          //   url: '/api/app_users/me', 
           //   method: 'get' 
           // },
           user: { 
-            url: '/api/users/me', 
+            url: '/api/app_users/me', 
             method: 'get' 
           }
         }

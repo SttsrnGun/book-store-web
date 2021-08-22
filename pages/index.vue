@@ -12,7 +12,7 @@
     </v-row>
     <v-row>
       <v-col class="text-center">
-        <slideItem bookTag="best_sellers" />
+        <slideItem bookTag="BEST_SELLERS" />
       </v-col>
     </v-row>
     <v-row>
@@ -22,7 +22,7 @@
     </v-row>
     <v-row>
       <v-col class="text-center">
-        <slideItem bookTag="recomended" />
+        <slideItem bookTag="RECOMENDED" />
       </v-col>
     </v-row>
     <v-row>

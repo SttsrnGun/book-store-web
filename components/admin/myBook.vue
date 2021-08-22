@@ -61,13 +61,14 @@ export default {
         // "tag": this.bookTag,
       },
     };
-    // console.log(this.ownerId);
+    console.log(this.ownerId);
+
     if (this.ownerId) {
       payload = {
         params: {
           "owner[]": this.ownerId,
           "isHidden":0,
-          "deletedAt":null
+          "deletedAt":"null",
         },
       };
     }

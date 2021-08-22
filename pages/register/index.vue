@@ -52,7 +52,7 @@ export default {
           email: this.register.email,
           password: this.register.password,
         };
-        let resonse = await this.$axios.post(`/api/users/register`, payload);
+        let resonse = await this.$axios.post(`/api/app_users/register`, payload);
         this.isLoading = false;
 
         this.isSnackbar = true;

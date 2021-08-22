@@ -82,7 +82,7 @@
     </v-row>
     <v-row>
       <v-col class="text-center">
-        <slideItem bookTag="recomended" />
+        <slideItem bookTag="RECOMENDED" />
       </v-col>
     </v-row>
   </v-container>
